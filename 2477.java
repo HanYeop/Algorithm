@@ -35,6 +35,7 @@ public class Main {
     		}
     	}
     		
+    	// 다른 한 변 구하기
     	if(arr[(longest + 5) % 6] > arr[(longest + 1) % 6]) {
     		another = (longest + 5) % 6;
     	}
