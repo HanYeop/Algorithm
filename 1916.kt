@@ -22,7 +22,7 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))){
         val start = st.nextToken().toInt()
         val des = st.nextToken().toInt()
         val value = st.nextToken().toInt()
-
+        
         map[start].add(Node(des,value))
     }
 
@@ -30,7 +30,7 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))){
     val start = st.nextToken().toInt()
     val des = st.nextToken().toInt()
 
-    dijkstra(start) // 시작점에서 탐색 시작
+    dijkstra(start) // 시작점에서부터 탐색 시작
     println(dist[des]) // 목적지 최솟값 출력
 }
 
