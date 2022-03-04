@@ -22,8 +22,8 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))){
         val start = st.nextToken().toInt()
         val des = st.nextToken().toInt()
         val value = st.nextToken().toInt()
-        
-        map[start].add(Node(des,value))
+
+        map[start].add(Node(des,value)) // start에서 des로 가는 가중치 value
     }
 
     val st = StringTokenizer(readLine())
@@ -41,14 +41,14 @@ fun dijkstra(srt: Int){
     queue.add(Node(srt,0)) // 시작점 넣기
 
     while(queue.isNotEmpty()){
-        val curDes = queue.peek().des  // 현재 노드 인덱스
+        val curIndex = queue.peek().des  // 현재 노드 인덱스
         val curValue = queue.peek().value  // 현재 노드까지의 거리
         queue.poll()
 
-        if (dist[curDes] < curValue) continue // 가중치가 더 큰 경로 탐색 X
+        if (dist[curIndex] < curValue) continue // 가중치가 더 큰 경로 탐색 X
 
         // 인접리스트 탐색
-        for (i in map[curDes]) {
+        for (i in map[curIndex]) {
             val nextDes = i.des
             val nextValue = curValue + i.value
 
@@ -60,4 +60,3 @@ fun dijkstra(srt: Int){
         }
     }
 }
-
