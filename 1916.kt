@@ -21,9 +21,9 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))){
         val st = StringTokenizer(readLine())
         val start = st.nextToken().toInt()
         val des = st.nextToken().toInt()
-        val dist = st.nextToken().toInt()
+        val value = st.nextToken().toInt()
 
-        map[start].add(Node(des,dist))
+        map[start].add(Node(des,value))
     }
 
     val st = StringTokenizer(readLine())
