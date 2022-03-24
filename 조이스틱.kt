@@ -1,5 +1,4 @@
 // [프로그래머스] 조이스틱 (Kotlin)
-
 import kotlin.math.*
 
 class Solution {
@@ -7,10 +6,6 @@ class Solution {
     var min = Integer.MAX_VALUE
     lateinit var visit : Array<Boolean> // 변경된 값 => true
     var sum = 0 // 다 변경됐는지 체크
-
-    fun main(){
-        println(solution("JEROEN"))
-    }
 
     fun solution(name: String): Int {
         var answer = 0 
