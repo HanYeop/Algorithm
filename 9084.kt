@@ -1,28 +1,31 @@
-// [백준] 9084. 동전
+// [백준] 9084. 동전 (Kotlin)
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.util.*
 
-import java.util.Arrays;
-import java.util.Scanner;
+fun main() = with(BufferedReader(InputStreamReader(System.`in`))){
+    val t = readLine().toInt()
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int TC = sc.nextInt();
+    repeat(t){
+        val n = readLine().toInt()
+        val st = StringTokenizer(readLine())
+        val list = arrayListOf<Int>()
 
-        for (int tc = 1; tc <= TC; tc++) {
-            int N = sc.nextInt();
-            int[] coin = new int[N];
-            for (int i = 0; i < N; i++) coin[i] = sc.nextInt();
-            int M = sc.nextInt();
-            int[] dp = new int[M + 1];
-            dp[0] = 1;
-
-            for (int i = 0; i < N; i++) {
-                for (int j = coin[i]; j <= M; j++) {
-                    dp[j] += dp[j - coin[i]];
-                }
-            }
-
-            System.out.println(dp[M]);
+        // 아이템 입력
+        for(i in 0 until n){
+            list.add(st.nextToken().toInt())
         }
+
+        val price = readLine().toInt()
+        val dp = Array(price + 1){0}
+        dp[0] = 1
+
+        for(i in list){
+            for(j in i .. price){
+                dp[j] += dp[j - i]
+            }
+        }
+
+        println(dp[price])
     }
 }
