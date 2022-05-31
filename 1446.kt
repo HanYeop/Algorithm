@@ -2,11 +2,7 @@
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-data class Node(val des: Int, val value: Int): Comparable<Node>{
-    override fun compareTo(other: Node): Int {
-        return this.value - other.value
-    }
-}
+data class Node(val des: Int, val value: Int)
 
 fun main() = with(BufferedReader(InputStreamReader(System.`in`))){
     val (n,d) = readLine().split(" ").map { it.toInt() }
@@ -14,28 +10,33 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))){
     val road = Array(size) { arrayListOf<Node>() }
     val dist = Array(size) { 0 }
 
-    for(i in road.indices){
+    // 운전 거리, 지름길 초기화
+    for(i in 0 until size){
         road[i] = arrayListOf()
-    }
-
-    for(i in dist.indices){
         dist[i] = i
     }
 
+    // 지름길 입력
     repeat(n){
-        val (s,d,v) = readLine().split(" ").map { it.toInt() }
-        road[s].add(Node(d,v))
+        val (start,des,value) = readLine().split(" ").map { it.toInt() }
+
+        // 범위보다 작은 입력값만 넣음
+        if(start < size && des < size) {
+            road[start].add(Node(des, value))
+        }
     }
 
-    for(i in 0 until size){
+    for(i in 0 until size - 1){
+        // 더 짧은 거리가 있다면 갱신
+        if(dist[i + 1] > dist[i] + 1){
+            dist[i + 1] = dist[i] + 1
+        }
+
+        // 현재 위치에서 시작하는 지름길 탐색
         for(j in road[i]) {
-            if(j.des < size) {
-                if (dist[j.des] >= (dist[i] + j.value)) {
-                    dist[j.des] = (dist[i] + j.value)
-                    for(q in j.des + 1 until size){
-                        dist[q] = (dist[i] + j.value) + (q - j.des)
-                    }
-                }
+            // 지름길로 가는 비용이 더 짧다면 갱신
+            if (dist[j.des] > (dist[i] + j.value)) {
+                dist[j.des] = (dist[i] + j.value)
             }
         }
     }
